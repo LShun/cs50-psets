@@ -1,3 +1,4 @@
+//hello.c - prints "hello, world" on screen.
 #include <stdio.h>
 
 int main(void)
