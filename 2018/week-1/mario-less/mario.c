@@ -1,3 +1,4 @@
+//mario.c - ( Less version ): Construct the running-up blocks leading to the pole at the end of the Super Mario Bros. Game.
 #include <stdio.h>
 #include <cs50.h>
 
