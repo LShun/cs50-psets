@@ -1,4 +1,4 @@
-# CS50: Week 2
+# CS50: Week 1 - Continued
 
 My solved problem set's in Week 2 features:
 1. **Caesar** - Encrypts plaintext using user-supplied key with Caesar's algorithm to generate ciphertext.
