@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight / n); i < biHeight; i++)
     {
-        int k = 0;
+        int k = 0; //k is placed outside of the pixel increment so that it will not get reset before the line ends.
         RGBTRIPLE buffer[bi.biWidth]; //                                 <<either one of these two
         //RGBTRIPLE *buffer = calloc(bi.biWidth, sizeof(RGBTRIPLE)); //  <<remember to comment out the other
         // iterate over pixels in scanline
@@ -85,16 +85,18 @@ int main(int argc, char *argv[])
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr); // read RGB triple from infile
             for (int l = 0; l < n; l++)
             {
-                buffer[k] = triple;
-                k++;
+                buffer[k] = triple; //write from triple, the RGBTRIPLE value into the buffer array
+                k++; //increment k so that it does not overwrite the old array
             }
         }
-        for (int w = 0; w < n; w++)
+        // for n times
+        for (int w = 0; w < n; w++) 
             {
+                //write from buffer to the pointer
                 fwrite(buffer, sizeof(RGBTRIPLE), bi.biWidth, outptr);
                 for (int a = 0; a < padding_resized; a++)
                 {
-                    fputc(0x00, outptr);
+                    fputc(0x00, outptr); //write padding
                 }
             }
         // skip over padding, if any
