@@ -1,4 +1,4 @@
-// Resizes a BMP file using a factor of n using the "rewrite" method
+// Resizes a BMP file using a factor of n using the "rewrite" method which involves copying n times pixels in one string to `buffer` then copying the buffer n times to the file to print it multiple times.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -75,8 +75,8 @@ int main(int argc, char *argv[])
     for (int i = 0, biHeight = abs(bi.biHeight / n); i < biHeight; i++)
     {
         int k = 0; //k is placed outside of the pixel increment so that it will not get reset before the line ends.
-        RGBTRIPLE buffer[bi.biWidth]; //                                 <<either one of these two
-        //RGBTRIPLE *buffer = calloc(bi.biWidth, sizeof(RGBTRIPLE)); //  <<remember to comment out the other
+        //RGBTRIPLE buffer[bi.biWidth]; //                                 <<either one of these two, comment out the other
+        RGBTRIPLE *buffer = calloc(bi.biWidth, sizeof(RGBTRIPLE)); //      <<remove free() at line 106 if using first, cause auto.
         // iterate over pixels in scanline
         for (int j = 0; j < abs(bi.biWidth / n); j++)
         {
@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
             }
         }
         // for n times
-        for (int w = 0; w < n; w++) 
+        for (int w = 0; w < n; w++)
             {
                 //write from buffer to the pointer
                 fwrite(buffer, sizeof(RGBTRIPLE), bi.biWidth, outptr);
@@ -102,6 +102,8 @@ int main(int argc, char *argv[])
         // skip over padding, if any
         fseek(inptr, padding, SEEK_CUR);
         k = 0;
+
+        free(buffer); // <<remove this line if using RGBTRIPLE buffer[bi.biWidth], else its a good practice to leave.
     }
 
     // close infile
