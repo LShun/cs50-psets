@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form class="needs-validation" name="register" action="/register" method="post" novalidate onsubmit="return validateUsername()">
+        <div class="form-group">
+            <label for="usernameValidate"></label>
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" id="username" required>
+            <div class="invalid-feedback">
+                Username unavailable!
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Confirm password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+
+<script>
+function validateUsername() {
+    var input = document.getElementById("username").value;
+    $.get('/check?username=' + input, function( data ) {
+        if (data === false) {
+            alert("Username has been taken!");
+        }
+    });
+};
+</script>
+{% endblock %}

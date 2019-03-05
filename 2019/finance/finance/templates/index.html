@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome</h1>
+    </div>
+
+    <body>
+        <h4>Your stocks</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Shares</th>
+                    <th scope="col">Price/1</th>
+                    <th scope="col">Total Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for share in shares %}
+                    <tr>
+                        <th scope="row"> {{ loop.index }}</th>
+                        <td>{{ share['symbol'] }}</td>
+                        <td>{{ share['shares'] }}</td>
+                        <td>{{ indPrice[loop.index0] }}</td>
+                        <td>{{ totalPrice[loop.index0] }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th scope="row"> Sum </th>
+                        <td colspan="3">Total shares value: </td>
+                        <td>{{ sv }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">CASH: </td>
+                        <td>{{ cash }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Grand total: </td>
+                        <td>{{ grand }}</td>
+                    </tr>
+            </tbody>
+        </table>
+    </body>
+{% endblock %}
