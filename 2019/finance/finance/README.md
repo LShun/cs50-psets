@@ -25,7 +25,7 @@ A stock trading website. Utilizing real-time US stock floating price and virtual
   - **View:** Utilize [Jinja2]() for HTML Templating
   - **Controller:** Utilize [Flask](www.palletsprojects.com/p/flask/) & Python3 to handle user interactions.
 - **APIs:** 
-  - **IExTrading Stockbroking API **: Used to fetch real-time stock prices from the US market. The data is returned in key-value pairs in JSON format, which is processed into SQLite statements.
+  - **IExTrading Stockbroking API**: Used to fetch real-time stock prices from the US market. The data is returned in key-value pairs in JSON format, which is processed into SQLite statements.
   - **MemeGen**: Used to generate memes as error messages for server-side error checking in case users disabled JavaScript (or client-side error checking).
 - **Miscellaneous:**
   - **Cookies** are implemented to allow for temporary login persistence. Much easier for user as users don't have to re-enter password for every significant command.
