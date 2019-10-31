@@ -14,6 +14,12 @@ A stock trading website. Utilizing real-time US stock floating price and virtual
 
 ## Design Specifications
 
+### Functionality
+
+- **Signup, Login function**. Blocks attempts to signup with username already existed in database.
+- **Buy, Sell, Quote stocks**. All figures are up-to-date to IExTrading's current stock prices.
+  - Due to a lack of "dictionary of stocks", user needs to look up the NASDAQ stock code (through Google or something) and key in the stock code (such as for Apple, its AAPL)
+
 ### Frontend
 
 - **Look & Feel**: Utilize [Bootstrap Frontend Library](www.getbootstrap.com) to improve the look and feel of the website without reinventing the wheel.
